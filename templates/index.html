@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do Cloud — Список задач с облачным хранением файлов</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1>📝 Список задач</h1>
+            <p class="subtitle">
+                Проект по курсу «Технологии облачных вычислений»:<br>
+                <strong>«Список задач (To-Do) с облачным хранением файлов-вложений»</strong>
+            </p>
+        </header>
+
+        <form id="add-form" class="add-form">
+            <input id="title" type="text" placeholder="Что нужно сделать?" required autocomplete="off">
+            <button type="submit">Добавить</button>
+        </form>
+
+        <ul id="task-list" class="task-list"></ul>
+        <p id="empty" class="empty hidden">Список пуст — добавьте первую задачу 👆</p>
+
+        <footer class="app-footer">
+            Стек: Flask · MongoDB · Dropbox API · Docker · Heroku/Render
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
