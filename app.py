@@ -5,6 +5,7 @@ from pymongo import MongoClient
 from bson import ObjectId
 from bson.errors import InvalidId
 from dotenv import load_dotenv
+from bson.errors import InvalidId
 
 load_dotenv()
 
@@ -57,6 +58,36 @@ def delete_task(task_id):
             app.logger.warning(f"Dropbox delete failed: {e}")
 
     tasks_col.delete_one({"_id": oid})
+    return jsonify({"ok": True})
+
+@app.route("/api/tasks/<task_id>", methods=["PATCH"])
+def toggle_task(task_id):
+    try:
+        oid = ObjectId(task_id)
+    except InvalidId:
+        return jsonify({"error": "invalid id"}), 400
+
+    task = tasks_col.find_one({"_id": oid})
+    if not task:
+        return jsonify({"error": "not found"}), 404
+
+    tasks_col.update_one({"_id": oid}, {"$set": {"done": not task.get("done", False)}})
+    return jsonify({"ok": True})
+
+
+@app.route("/api/tasks/<task_id>", methods=["PUT"])
+def rename_task(task_id):
+    try:
+        oid = ObjectId(task_id)
+    except InvalidId:
+        return jsonify({"error": "invalid id"}), 400
+
+    data = request.get_json() or {}
+    new_title = (data.get("title") or "").strip()
+    if not new_title:
+        return jsonify({"error": "title required"}), 400
+
+    tasks_col.update_one({"_id": oid}, {"$set": {"title": new_title}})
     return jsonify({"ok": True})
 
 
