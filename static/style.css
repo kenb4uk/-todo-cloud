@@ -1,44 +1,69 @@
-* { box-sizing: border-box; font-family: system-ui, sans-serif; }
+* { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
 body { margin: 0; background: #f5f6fa; color: #2c3e50; }
-.container { max-width: 640px; margin: 40px auto; padding: 24px; background: #fff;
+.container { max-width: 720px; margin: 40px auto; padding: 24px; background: #fff;
              border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-h1 { margin-top: 0; font-size: 1.6rem; }
+
+/* Header */
+.app-header { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #eee; }
+.app-header h1 { margin: 0 0 8px 0; font-size: 1.6rem; }
+.subtitle { margin: 0; font-size: 0.9rem; color: #7f8c8d; line-height: 1.5; }
+.subtitle strong { color: #2c3e50; }
+
+/* Add form */
 .add-form { display: flex; gap: 8px; margin-bottom: 16px; }
-.add-form input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; }
+.add-form input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+.add-form input:focus { outline: none; border-color: #3498db; }
 .add-form button { padding: 10px 16px; border: none; background: #3498db; color: #fff;
-                   border-radius: 8px; cursor: pointer; }
+                   border-radius: 8px; cursor: pointer; font-size: 1rem; }
 .add-form button:hover { background: #2980b9; }
+
+/* Toolbar: search + filters */
+.toolbar { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+#search { padding: 9px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem; }
+#search:focus { outline: none; border-color: #3498db; }
+
+.filters { display: flex; gap: 6px; }
+.filter-btn {
+    flex: 1; padding: 7px 12px; border: 1px solid #ddd; background: #fff;
+    color: #555; border-radius: 8px; cursor: pointer; font-size: 0.9rem;
+    transition: all 0.15s;
+}
+.filter-btn:hover { background: #f0f3f7; }
+.filter-btn.active { background: #3498db; color: #fff; border-color: #3498db; }
+
+/* Stats */
+.stats { margin: 0 0 14px 0; font-size: 0.85rem; color: #7f8c8d; }
+.stats span { font-weight: 600; color: #2c3e50; }
+
+/* Task list */
 .task-list { list-style: none; padding: 0; margin: 0; }
-.task { display: flex; align-items: center; gap: 12px; padding: 12px;
+.task { display: flex; align-items: center; gap: 10px; padding: 10px 4px;
         border-bottom: 1px solid #eee; }
-.task > span:first-child { flex: 1; }
-.task a { color: #3498db; text-decoration: none; }
+.task:last-child { border-bottom: none; }
+
+.task-checkbox { width: 18px; height: 18px; cursor: pointer; flex-shrink: 0; }
+
+.task-title { flex: 1; word-break: break-word; cursor: pointer; }
+.task-title:hover { color: #3498db; }
+.task-done .task-title { text-decoration: line-through; opacity: 0.55; }
+
+.attach-box { display: flex; align-items: center; gap: 6px; }
+.attach-box a { color: #3498db; text-decoration: none; font-size: 0.9rem; }
+.attach-box a:hover { text-decoration: underline; }
+
+.thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 6px;
+         cursor: pointer; border: 1px solid #eee; }
+.thumb:hover { border-color: #3498db; }
+
+.file-input { font-size: 0.8rem; max-width: 160px; }
+
 .delete { background: transparent; border: none; color: #e74c3c; font-size: 1.1rem;
-          cursor: pointer; }
-.empty { color: #999; text-align: center; }
+          cursor: pointer; padding: 4px; flex-shrink: 0; }
+.delete:hover { color: #c0392b; }
+
+/* Empty + footer */
+.empty { color: #999; text-align: center; padding: 20px 0; }
 .hidden { display: none; }
-.app-header {
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #eee;
-}
-.app-header h1 {
-    margin: 0 0 8px 0;
-}
-.subtitle {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #7f8c8d;
-    line-height: 1.5;
-}
-.subtitle strong {
-    color: #2c3e50;
-}
-.app-footer {
-    margin-top: 24px;
-    padding-top: 16px;
-    border-top: 1px solid #eee;
-    font-size: 0.8rem;
-    color: #95a5a6;
-    text-align: center;
-}
+
+.app-footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee;
+              font-size: 0.8rem; color: #95a5a6; text-align: center; }

@@ -20,8 +20,23 @@
             <button type="submit">Добавить</button>
         </form>
 
+        <div class="toolbar">
+            <input id="search" type="text" placeholder="🔍 Поиск по названию…" autocomplete="off">
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="active">Активные</button>
+                <button class="filter-btn" data-filter="done">Выполненные</button>
+            </div>
+        </div>
+
+        <p class="stats">
+            Всего: <span id="count-total">0</span> ·
+            Выполнено: <span id="count-done">0</span> ·
+            Осталось: <span id="count-active">0</span>
+        </p>
+
         <ul id="task-list" class="task-list"></ul>
-        <p id="empty" class="empty hidden">Список пуст — добавьте первую задачу 👆</p>
+        <p id="empty" class="empty hidden">Задач не найдено</p>
 
         <footer class="app-footer">
             Стек: Flask · MongoDB · Dropbox API · Docker · Heroku/Render
